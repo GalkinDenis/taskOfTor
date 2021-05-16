@@ -16,8 +16,8 @@ S – движение на клетку вниз, W – влево, N – вв�
 
 Пример 1:
 Ввод	:
-4 4
-new row 0 1 3 2
+size 4 4
+coordinats 0 1 3 2
 new row 1 0 0 0
 new row 1 0 1 0
 new row 0 0 0 0
@@ -27,8 +27,8 @@ EN
 
 Пример 2
 Ввод:	
-10 10
-1 0 8 8
+size 10 10
+coordinats 1 0 8 8
 new row 1 0 1 0 0 0 0 0 0 1
 new row 0 0 0 0 1 0 0 1 0 0
 new row 0 0 0 0 0 0 0 0 0 0
@@ -44,8 +44,8 @@ SSSWWSSESESEEEEEEEE
 
 Пример 3:
 Ввод:	
-4 4
-new row 0 3 2 1
+size 4 4
+coordinats 0 3 2 1
 new row 1 1 1 0
 new row 1 1 1 1
 new row 1 0 1 1
@@ -55,8 +55,8 @@ new row 1 1 1 1
 
 Пример 4:
 Ввод:	
-1 12
-new row 0 0 0 6
+size 1 12
+coordinats 0 0 0 6
 new row 0 0 0 0 0 0 0 0 0 0 0 0
 Вывод:
 WWWWWW
