@@ -16,7 +16,7 @@ S – движение на клетку вниз, W – влево, N – вв�
 
 Пример 1:
 Ввод	:
-size 4 4
+size 4x4
 coordinats 0 1 3 2
 new row 1 0 0 0
 new row 1 0 1 0
@@ -27,7 +27,7 @@ EN
 
 Пример 2
 Ввод:	
-size 10 10
+size 10x10
 coordinats 1 0 8 8
 new row 1 0 1 0 0 0 0 0 0 1
 new row 0 0 0 0 1 0 0 1 0 0
@@ -44,7 +44,7 @@ SSSWWSSESESEEEEEEEE
 
 Пример 3:
 Ввод:	
-size 4 4
+size 4x4
 coordinats 0 3 2 1
 new row 1 1 1 0
 new row 1 1 1 1
@@ -55,7 +55,7 @@ new row 1 1 1 1
 
 Пример 4:
 Ввод:	
-size 1 12
+size 1x12
 coordinats 0 0 0 6
 new row 0 0 0 0 0 0 0 0 0 0 0 0
 Вывод:
