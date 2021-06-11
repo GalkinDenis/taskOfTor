@@ -33,7 +33,7 @@ public class last {
             Fn = scan.nextInt();
             Fm = scan.nextInt();
 
-        for (short g = 0; g < nRows; g++) {
+        for (g = 0; g < nRows; g++) {
                 for (short x = 0; x < mColumns; x++) {
                     field[g][x] = scan.nextInt();
                 }
@@ -104,7 +104,7 @@ public class last {
         while (!points.isEmpty()) {
             count++;
 
-            for (short sh = 0; sh < size; sh += 2) {
+            for (sh = 0; sh < size; sh += 2) {
 
                 if (points.get(1) != mColumns - 1) {
                     if (field[points.get(0)][points.get(1) + 1] == 0) {
