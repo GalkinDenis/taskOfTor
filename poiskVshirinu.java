@@ -28,7 +28,6 @@ public class last {
             mColumns = scan.nextInt();
 
         field = new int[nRows][mColumns];
-
             Sn = scan.nextInt();
             Sm = scan.nextInt();
             Fn = scan.nextInt();
