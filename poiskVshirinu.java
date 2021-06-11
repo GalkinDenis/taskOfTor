@@ -1,74 +1,59 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class last {
 
-    static short[][] field;
+    static int[][] field;
 
     public static void main(String[] args) {
 
-        String[] pars;
+        int count = 4;
 
-        short count = 4;
+        LinkedList<Integer> points = new LinkedList<>();
 
-        short n;
-        short m;
+        int Sn = 0;
+        int Sm = 0;
+        int Fn = 0;
+        int Fm = 0;
 
-        LinkedList<Short> points = new LinkedList<>();
+        int nRows = 0;
+        int mColumns = 0;
 
-        short Sn = 0;
-        short Sm = 0;
-        short Fn = 0;
-        short Fm = 0;
+        Scanner scan = new Scanner(System.in);
+            nRows = scan.nextInt();
+            mColumns = scan.nextInt();
 
-        short nRows = 0;
-        short mColumns = 0;
+        field = new int[nRows][mColumns];
 
-        try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
+            Sn = scan.nextInt();
+            Sm = scan.nextInt();
+            Fn = scan.nextInt();
+            Fm = scan.nextInt();
 
-            //ввод строки с размером матрицы
-            pars = bf.readLine().split(" ");
-
-            nRows = Short.parseShort(pars[0]);
-            mColumns = Short.parseShort(pars[1]);
-
-            field = new short[nRows][mColumns];
-
-            //ввод строки с координатами финиша и старта на матрице
-            pars = bf.readLine().split(" ");
-            Sn = Short.parseShort(pars[0]);
-            Sm = Short.parseShort(pars[1]);
-            Fn = Short.parseShort(pars[2]);
-            Fm = Short.parseShort(pars[3]);
-
-            //заполнение матрицы
-            for (short g = 0; g < nRows; g++) {
-                pars = bf.readLine().split(" ");
+        for (short g = 0; g < nRows; g++) {
                 for (short x = 0; x < mColumns; x++) {
-                    field[g][x] = Short.parseShort(pars[x]);
+                    field[g][x] = scan.nextInt();
                 }
-            }
-
-            field[Sn][Sm] = 3;
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
+        field[Sn][Sm] = 3;
 
         //первая выборка шагов(влево, врпаво, вверх, вниз) из матрицы.
         if (Sm != mColumns - 1) {
             if (field[Sn][Sm + 1] == 0) {
                 field[Sn][Sm + 1] = count;
                 points.add(Sn);
-                points.add((short) (Sm + 1));
+                points.add(Sm + 1);
             }
         } else {
             if (field[Sn][0] == 0) {
                 field[Sn][0] = count;
                 points.add(Sn);
-                points.add((short) 0);
+                points.add(0);
             }
         }
 
@@ -76,26 +61,26 @@ public class last {
             if (field[Sn][Sm - 1] == 0) {
                 field[Sn][Sm - 1] = count;
                 points.add(Sn);
-                points.add((short) (Sm - 1));
+                points.add(Sm - 1);
             }
         } else {
             if (field[Sn][mColumns - 1] == 0) {
                 field[Sn][mColumns - 1] = count;
                 points.add(Sn);
-                points.add((short) (mColumns - 1));
+                points.add(mColumns - 1);
             }
         }
 
         if (Sn != nRows - 1) {
             if (field[Sn + 1][Sm] == 0) {
                 field[Sn + 1][Sm] = count;
-                points.add((short) (Sn + 1));
+                points.add(Sn + 1);
                 points.add(Sm);
             }
         } else {
             if (field[0][Sm] == 0) {
                 field[0][Sm] = count;
-                points.add((short) 0);
+                points.add(0);
                 points.add(Sm);
             }
         }
@@ -103,18 +88,18 @@ public class last {
         if (Sn != (short) 0) {
             if (field[Sn - 1][Sm] == 0) {
                 field[Sn - 1][Sm] = count;
-                points.add((short) (Sn - 1));
+                points.add(Sn - 1);
                 points.add(Sm);
             }
         } else {
             if (field[nRows - 1][Sm] == 0) {
                 field[nRows - 1][Sm] = count;
-                points.add((short) (nRows - 1));
+                points.add(nRows - 1);
                 points.add(Sm);
             }
         }
 
-        short size = (short) points.size();
+        int size = points.size();
 
         //последующее распространение волны
         while (!points.isEmpty()) {
@@ -122,69 +107,68 @@ public class last {
 
             for (short sh = 0; sh < size; sh += 2) {
 
-                n = points.get(0);
+                if (points.get(1) != mColumns - 1) {
+                    if (field[points.get(0)][points.get(1) + 1] == 0) {
+                        field[points.get(0)][points.get(1) + 1] = count;
+                        points.add(points.get(0));
+                        points.add(points.get(1) + 1);
+                    }
+                } else {
+                    if (field[points.get(0)][0] == 0) {
+                        field[points.get(0)][0] = count;
+                        points.add(points.get(0));
+                        points.add(0);
+                    }
+                }
+
+                if (points.get(1) != 0) {
+                    if (field[points.get(0)][points.get(1) - 1] == 0) {
+                        field[points.get(0)][points.get(1) - 1] = count;
+                        points.add(points.get(0));
+                        points.add(points.get(1) - 1);
+                    }
+                } else {
+                    if (field[points.get(0)][mColumns - 1] == 0) {
+                        field[points.get(0)][mColumns - 1] = count;
+                        points.add(points.get(0));
+                        points.add(mColumns - 1);
+                    }
+                }
+
+                if (points.get(0) != nRows - 1) {
+                    if (field[points.get(0) + 1][points.get(1)] == 0) {
+                        field[points.get(0) + 1][points.get(1)] = count;
+                        points.add(points.get(0) + 1);
+                        points.add(points.get(1));
+
+                    }
+                } else {
+                    if (field[0][points.get(1)] == 0) {
+                        field[0][points.get(1)] = count;
+                        points.add(0);
+                        points.add(points.get(1));
+                    }
+                }
+
+                if (points.get(0) != 0) {
+                    if (field[points.get(0) - 1][points.get(1)] == 0) {
+                        field[points.get(0) - 1][points.get(1)] = count;
+                        points.add(points.get(0) - 1);
+                        points.add(points.get(1));
+                    }
+                } else {
+                    if (field[nRows - 1][points.get(1)] == 0) {
+                        field[nRows - 1][points.get(1)] = count;
+                        points.add(nRows - 1);
+                        points.add(points.get(1));
+                    }
+                }
+
                 points.remove(0);
-                m = points.get(0);
                 points.remove(0);
 
-                if (m != mColumns - 1) {
-                    if (field[n][m + 1] == 0) {
-                        field[n][m + 1] = count;
-                        points.add(n);
-                        points.add((short) (m + 1));
-                    }
-                } else {
-                    if (field[n][0] == 0) {
-                        field[n][0] = count;
-                        points.add(n);
-                        points.add((short) 0);
-                    }
-                }
-
-                if (m != 0) {
-                    if (field[n][m - 1] == 0) {
-                        field[n][m - 1] = count;
-                        points.add(n);
-                        points.add((short) (m - 1));
-                    }
-                } else {
-                    if (field[n][mColumns - 1] == 0) {
-                        field[n][mColumns - 1] = count;
-                        points.add(n);
-                        points.add((short) (mColumns - 1));
-                    }
-                }
-
-                if (n != nRows - 1) {
-                    if (field[n + 1][m] == 0) {
-                        field[n + 1][m] = count;
-                        points.add((short) (n + 1));
-                        points.add(m);
-
-                    }
-                } else {
-                    if (field[0][m] == 0) {
-                        field[0][m] = count;
-                        points.add((short) 0);
-                        points.add(m);
-                    }
-                }
-
-                if (n != 0) {
-                    if (field[n - 1][m] == 0) {
-                        field[n - 1][m] = count;
-                        points.add((short) (n - 1));
-                        points.add(m);
-                    }
-                } else {
-                    if (field[nRows - 1][m] == 0) {
-                        field[nRows - 1][m] = count;
-                        points.add((short) (nRows - 1));
-                        points.add(m);
-                    }
-                }
             }
-            size = (short) points.size();
+            size = points.size();
         }
 
         count = 0;
